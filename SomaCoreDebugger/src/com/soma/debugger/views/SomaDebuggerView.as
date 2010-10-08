@@ -442,10 +442,11 @@
 		}
 		
 		public function dispose() : void {
-			trace("DISPOSE");
 			// dispose objects, graphics and events listeners
 			try {
 				removeEventListener(Event.ADDED_TO_STAGE, added, false);
+				_gcDetails.removeEventListener(Event.ENTER_FRAME, centerGCDetails);
+				_gcDetails.removeEventListener(Event.CLOSE, somans::showHideGCDetails);
 				_mainWindow.removeEventListener(Event.CLOSE, closeHandler);
 				_mainWindow.removeEventListener(SomaDebuggerMainWindow.SELECT_GC_DETAILS, somans::showHideGCDetails);
 				_mainWindow.dispose();
