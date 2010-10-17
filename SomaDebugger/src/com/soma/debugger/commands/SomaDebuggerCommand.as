@@ -92,7 +92,7 @@
 							wire.moveToTop();
 							break;
 						case SomaDebuggerEvent.PRINT:
-							wire.print(SomaDebuggerEvent(event).message);
+							wire.print(SomaDebuggerEvent(event).message, SomaDebuggerEvent(event).info);
 							break;
 						case SomaDebuggerEvent.CLEAR:
 							wire.clear();

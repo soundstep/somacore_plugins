@@ -156,8 +156,8 @@
 			return _debuggerName;
 		}
 		
-		public function print(value:Object):void {
-			debugger.print(value);
+		public function print(value:Object, info:String):void {
+			debugger.print(value, info);
 		}
 
 		public function moveToTop():void {

@@ -327,11 +327,13 @@
 			return String(value);
 		}
 		
-		private function getPrintString(value:Object):String {
+		private function getPrintString(value:Object, info:String = null):String {
 			var link:int = registerObject(value);
 			var type:String = getQualifiedClassName(value);
 			var str:String = '<a href="event:' + link + '">';
-			str += '<font color="#881260">PRINT ></font> ' + getValue(value);
+			var infoValue:String = (info) ? info : "PRINT";
+			var infoColor:String = (info) ? "6A9100" : "881260";
+			str += '<font color="#' + infoColor + '">' + infoValue + ' ></font> ' + getValue(value);
 			str += ' <font color="#997E17">(' + getType(type) + ')</font></a>';
 			return str;
 		}
@@ -446,8 +448,8 @@
 			_count++;
 		}
 		
-		public function print(value:Object):void {
-			var str:String = getPrintString(value);
+		public function print(value:Object, info:String = null):void {
+			var str:String = getPrintString(value, info);
 			if (enableTrace) trace(_count + ". " + formatTrace(str));
 			if (enableLog && _mainWindow != null) _mainWindow.textfield.htmlText = _count + ". " + str + "<br/>" + _mainWindow.textfield.htmlText;
 			_count++;

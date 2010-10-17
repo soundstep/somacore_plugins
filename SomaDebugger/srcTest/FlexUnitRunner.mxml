@@ -8,6 +8,9 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.soma.debugger.tests.SomaDebuggerSuite;
+			import org.flexunit.internals.TraceListener;
+			import org.flexunit.listeners.CIListener;
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
 
@@ -16,10 +19,12 @@
 			public function runMe():void {
 				core = new FlexUnitCore();
 				core.addListener(new UIListener(uiListener));
-				core.run(SimpleTest);
+				core.addListener(new CIListener());
+				core.addListener(new TraceListener());
+				core.run(SomaDebuggerSuite);
 			}
 	]]>
 	</fx:Script>
 	
-	<adobe:TestRunnerBase id="uiListener" width="100%" height="100%" />
+	<adobe:TestRunnerBase id="uiListener" width="100%" height="100%"  />
 </s:Application>

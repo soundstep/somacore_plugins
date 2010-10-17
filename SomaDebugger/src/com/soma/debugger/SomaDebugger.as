@@ -156,7 +156,7 @@
 			return _name;
 		}
 		
-		public function dispose() : void {
+		public function dispose():void {
 			// dispose objects, graphics and events listeners
 			try {
 				_instance.removeWire(_name);
