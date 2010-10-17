@@ -1,0 +1,5 @@
+h2. SomaCore plugins
+
+h3. SomaDebugger
+
+More info coming soon...
