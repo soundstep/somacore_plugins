@@ -35,7 +35,7 @@
 
 	/**
 	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />
-	 * <b>Class version:</b> v1.0.0<br />
+	 * <b>Class version:</b> v1.0.1<br />
 	 * <b>Actionscript version:</b> 3.0<br />
 	 * <b>Copyright:</b>
 	 * Mozilla Public License 1.1 (MPL 1.1)<br /> 
@@ -112,8 +112,8 @@
 			if (_view != null) _view.printCommand(type, event);
 		}
 		
-		public function print(value:Object):void {
-			if (_view != null) _view.print(value);
+		public function print(value:Object, info:String = null):void {
+			if (_view != null) _view.print(value, info);
 		}
 		
 		public function clear():void {

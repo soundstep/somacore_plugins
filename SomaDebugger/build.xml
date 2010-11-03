@@ -65,6 +65,8 @@
 			<arg value="-sp"/>
 			<arg value="${dir.src.test-display}"/>
 			<arg value="-sp"/>
+			<arg value="${dir.src.test}"/>
+			<arg value="-sp"/>
 			<arg value="${dir.src.main}"/>
 			<arg value="-default-size"/>
 			<arg value="670"/>
@@ -86,6 +88,7 @@
 		</exec>
 		<echo message="Success"/>
 		<fdt.startDebugger projectname="${project.name}"/>
+		<echo message='${launch.url}'/>
 		<fdt.browse location="${launch.url}"/>
 		<echo message="Success"/>
 		<eclipse.refreshLocal resource="${project.name}" />
@@ -95,13 +98,13 @@
 		<echo message="Create SomaDebugger SWC"/>
 		<exec executable="${compc}">
 			<arg line="-o"/>
-			<arg line="${dir.release}/SomaDebugger-${debugger.version}.swc"/>
+			<arg line="'${dir.release}/SomaDebugger-${debugger.version}.swc'"/>
 			<arg line="-include-sources"/>
-			<arg line="${dir.src.main}"/>
+			<arg line="'${dir.src.main}'"/>
 			<arg line="-library-path"/>
-			<arg line="${dir.libs}"/>
+			<arg line="'${dir.libs}'"/>
 			<arg line="-sp"/>
-			<arg line="${dir.src.main}"/>
+			<arg line="'${dir.src.main}'"/>
 		</exec>
 		<echo message="Success"/>
 		<eclipse.refreshLocal resource="${project.name}" />

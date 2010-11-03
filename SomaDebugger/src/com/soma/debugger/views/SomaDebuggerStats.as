@@ -34,7 +34,7 @@
 
 	/**
 	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />
-	 * <b>Class version:</b> v1.0.0<br />
+	 * <b>Class version:</b> v1.0.1<br />
 	 * <b>Actionscript version:</b> 3.0<br />
 	 * <b>Copyright:</b>
 	 * Mozilla Public License 1.1 (MPL 1.1)<br /> 
