@@ -87,7 +87,7 @@
 		// PRIVATE, PROTECTED
 		//________________________________________________________________________________________________
 		
-		override protected function initialize():void {
+		override public function initialize():void {
 			if (stage == null) {
 				trace("Error in ", this, " The stage is null.");
 				return;
@@ -125,7 +125,7 @@
 			if (_keyArray.join(",") == "68,69,66,85,71") show();
 		}
 		
-		override protected function dispose():void {
+		override public function dispose():void {
 			// dispose objects, graphics and events listeners
 			try {
 				if (hasCommand(SomaDebuggerEvent.SHOW_DEBUGGER)) removeCommand(SomaDebuggerEvent.SHOW_DEBUGGER);
