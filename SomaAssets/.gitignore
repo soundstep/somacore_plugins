@@ -1,0 +1,11 @@
+/.settings/*
+/bin/*
+.project
+*.swf
+*user.properties
+*.cache
+
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
