@@ -1,8 +1,8 @@
-package com.soma.core.plugins.assets.controllers.events {
+package com.soma.plugins.assets.events {
 
-	import com.soma.core.plugins.assets.SomaAssets;
-
+	import com.soma.plugins.assets.SomaAssets;
 	import flash.events.Event;
+
 
 	/**
 	 * @author Romuald Quantin (romu@soundstep.com)

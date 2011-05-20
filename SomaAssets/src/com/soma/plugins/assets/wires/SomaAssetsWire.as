@@ -7,7 +7,7 @@ package com.soma.plugins.assets.wires {
 	import com.soma.core.interfaces.IWire;
 	import com.soma.core.wire.Wire;
 	import com.soma.plugins.assets.SomaAssets;
-	import com.soma.plugins.assets.controllers.events.SomaAssetsEvent;
+	import com.soma.plugins.assets.events.SomaAssetsEvent;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 

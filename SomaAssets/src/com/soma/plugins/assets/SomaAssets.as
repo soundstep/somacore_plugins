@@ -4,6 +4,7 @@ package com.soma.plugins.assets {
 	import com.soma.assets.loader.core.ILoader;
 	import com.soma.core.interfaces.ISomaPlugin;
 	import com.soma.core.interfaces.ISomaPluginVO;
+	import com.soma.plugins.assets.vo.SomaAssetsVO;
 	import com.soma.plugins.assets.wires.SomaAssetsWire;
 
 	/**
@@ -19,10 +20,11 @@ package com.soma.plugins.assets {
 		private var _vo:SomaAssetsVO;
 
 		public function initialize(pluginVO:ISomaPluginVO):void {
-			if (!(pluginVO is SomaAssetsVO) || !(pluginVO is ISomaPluginVO) || pluginVO == null) throw new Error("Error in " + this + " The pluginVO is null or is not an instance of SomaAssetLoaderVO");
+			if (!(pluginVO is SomaAssetsVO) || pluginVO == null) throw new Error("Error in " + this + " The pluginVO is null or is not an instance of SomaAssetsVO");
 			try {
+				var vo:SomaAssetsVO = pluginVO as SomaAssetsVO;
+				if (vo == null || vo.instance == null || vo.instance.wires == null) throw new Error("Soma is not initialized properly.");
 				_vo = pluginVO as SomaAssetsVO;
-				if (_vo == null || _vo.instance == null || _vo.instance.wires == null) throw new Error("Soma is not initialized properly.");
 				createWire();
 				createInjectorMapping();
 			} catch (e:Error) {

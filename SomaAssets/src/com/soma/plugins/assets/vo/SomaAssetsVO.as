@@ -1,4 +1,4 @@
-package com.soma.core.plugins.assets {
+package com.soma.plugins.assets.vo {
 
 	import com.soma.core.interfaces.ISoma;
 	import com.soma.core.interfaces.ISomaPluginVO;

@@ -95,7 +95,7 @@
 		//________________________________________________________________________________________________
 		
 		public function initialize(pluginVO:ISomaPluginVO):void {
-			if (!(pluginVO is SomaDebuggerVO) || pluginVO == null) throw new Error("Error in " + this + " The pluginVO is null or is not an instance of SomaDebuggerPluginVO");
+			if (!(pluginVO is SomaDebuggerVO) || pluginVO == null) throw new Error("Error in " + this + " The pluginVO is null or is not an instance of SomaDebuggerVO");
 			try {
 				var vo:SomaDebuggerVO = pluginVO as SomaDebuggerVO;
 				if (vo == null || vo.instance == null || vo.instance.wires == null) throw new Error("Soma is not initialized properly.");

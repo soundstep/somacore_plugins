@@ -9,12 +9,12 @@
 	<fx:Script>
 		<![CDATA[
 
-			import com.soma.core.plugins.assets.tests.SomaAssetsSuite;
-
+			import com.soma.plugins.assets.tests.SomaAssetsSuite;
 			import org.flexunit.internals.TraceListener;
 			import org.flexunit.listeners.CIListener;
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
+
 
 			private var core:FlexUnitCore;
 
