@@ -44,6 +44,8 @@
 			<arg value="0xFCFCFC"/>
 			<arg value="-library-path"/>
 			<arg value="${FLEX_HOME}/frameworks/locale/en_US"/>
+			<arg value="-library-path"/>
+			<arg value="${FLEX_HOME}/frameworks/libs"/>
 			<arg value="-target-player"/>
 			<arg value="10.0.0"/>
 			<arg value="-debug=true"/>
@@ -94,16 +96,24 @@
 	
 	<target name="4. Create Release">
 		<echo message="Create SomaDebugger SWC"/>
+		<mkdir dir="empty-libs"/>
 		<exec executable="${compc}">
 			<arg line="-o"/>
 			<arg line="${dir.release}/SomaDebugger-${debugger.version}.swc"/>
 			<arg line="-include-sources"/>
 			<arg line="${dir.src.main}"/>
-			<arg line="-library-path"/>
-			<arg line="${dir.libs}"/>
+			
+			<arg line="-external-library-path+=${dir.somacore}"/>
+			<arg line="-library-path=./empty-libs"/>
+			<arg value="-incremental=true"/>
+			<arg value="-static-link-runtime-shared-libraries=true"/>
+			<arg value="-verbose-stacktraces=true"/>
+			<arg value="-headless-server=true"/>
+			
 			<arg line="-sp"/>
 			<arg line="${dir.src.main}"/>
 		</exec>
+		<delete dir="empty-libs"/>
 		<echo message="Success"/>
 		<eclipse.refreshLocal resource="${project.name}" />
 	</target>

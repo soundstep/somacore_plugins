@@ -3,6 +3,7 @@
 .project
 *.swf
 *user.properties
+*.cache
 
 .DS_Store?
 ehthumbs.db
