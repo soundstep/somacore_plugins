@@ -23,6 +23,7 @@
  */
  
  package com.soma.debugger.commands {
+	import com.soma.debugger.SomaDebugger;
 	import com.soma.core.controller.Command;
 	import com.soma.core.interfaces.ICommand;
 	import com.soma.debugger.events.SomaDebuggerEvent;
@@ -78,7 +79,7 @@
 		public function execute(event:Event):void {
 			try {
 				var debuggerEvent:SomaDebuggerEvent = event as SomaDebuggerEvent;
-				var debuggerName:String = (debuggerEvent.debuggerName == null || debuggerEvent.debuggerName == "") ? "Soma::SomaDebugger" : debuggerEvent.debuggerName;
+				var debuggerName:String = (debuggerEvent.debuggerName == null || debuggerEvent.debuggerName == "") ? SomaDebugger.NAME_DEFAULT : debuggerEvent.debuggerName;
 				var wire:SomaDebuggerWire = getWire(debuggerName) as SomaDebuggerWire;
 				if (wire != null) {
 					switch (event.type) {

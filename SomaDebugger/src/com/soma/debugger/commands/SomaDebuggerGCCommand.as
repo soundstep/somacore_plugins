@@ -23,6 +23,8 @@
  */
  
  package com.soma.debugger.commands {
+
+	import com.soma.debugger.SomaDebugger;
 	import com.soma.core.controller.Command;
 	import com.soma.core.interfaces.ICommand;
 	import com.soma.debugger.events.SomaDebuggerGCEvent;
@@ -78,7 +80,7 @@
 		public function execute(event:Event):void {
 			try {
 				var debuggerGCEvent:SomaDebuggerGCEvent = event as SomaDebuggerGCEvent;
-				var debuggerName:String = (debuggerGCEvent.debuggerName == null || debuggerGCEvent.debuggerName == "") ? "Soma::SomaDebugger" : debuggerGCEvent.debuggerName;
+				var debuggerName:String = (debuggerGCEvent.debuggerName == null || debuggerGCEvent.debuggerName == "") ? SomaDebugger.NAME_DEFAULT : debuggerGCEvent.debuggerName;
 				var wire:SomaDebuggerGCWire = getWire(debuggerName+"GCWire") as SomaDebuggerGCWire;
 				if (wire != null) {
 					switch (event.type) {

@@ -1,3 +1,16 @@
+h3. SomaDebugger-v2.0.1 (20-05-2011)
+
+Injection name added.
+Default name changed to "debugger".
+
+h3. SomaDebugger-v2.0.0 (30-01-2011)
+
+SomaDebugger update to SomaCore v2.
+
+h3. SomaDebugger-v1.0.1 (03-11-2010)
+
+SomaDebugger minor but update.
+
 h3. SomaDebugger-v1.0.0 (17-10-2010)
 
 SomaDebugger First Release.

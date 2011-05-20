@@ -89,7 +89,7 @@
 		<echo message="Success"/>
 		<fdt.startDebugger projectname="${project.name}"/>
 		<!--<fdt.browse location="${launch.url}"/>-->
-		<fdt.extSWFViewer.startSWF file="${dir.bin}/display.swf" width="670" height="600"/>
+		<fdt.extSWFViewer.startSWF file="${dir.bin}/Main.swf" width="670" height="600"/>
 		<echo message="Success"/>
 		<eclipse.refreshLocal resource="${project.name}" />
 	</target>

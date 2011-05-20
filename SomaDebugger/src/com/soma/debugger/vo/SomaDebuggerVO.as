@@ -23,6 +23,7 @@
  */
  
  package com.soma.debugger.vo {
+	import com.soma.debugger.SomaDebugger;
 	import com.soma.core.interfaces.ISoma;
 	import com.soma.core.interfaces.ISomaPluginVO;
 
@@ -65,22 +66,16 @@
 		public function SomaDebuggerVO(instance:ISoma, debuggerName:String = null, commands:Array = null, enableLog:Boolean = true, enableTrace:Boolean = true) {
 			if (instance == null) throw new Error("Error in " + this + " ISoma instance is null.");
 			this.instance = instance;
-			this.debuggerName = (debuggerName == null || debuggerName == "") ? "Soma::SomaDebugger" : debuggerName;
+			this.debuggerName = (debuggerName == null || debuggerName == "") ? SomaDebugger.NAME_DEFAULT : debuggerName;
 			this.commands = (commands == null) ? [] : commands;
 			this.enableLog = enableLog;
 			this.enableTrace = enableTrace;
 		}
 		
-		//
-		// PRIVATE, PROTECTED
-		//________________________________________________________________________________________________
-		
-		
-		
-		// PUBLIC
-		//________________________________________________________________________________________________
-		
-		
+		public function dispose():void {
+			instance = null;
+			commands = null;
+		}
 		
 	}
 }

@@ -14,6 +14,7 @@ package com.soma.debugger.tests {
 	public class SomaDebuggerSuite {
 
 		public var baseTests:BaseTests;
+		public var debuggerTests:SomaDebuggerTests;
 		
 	}
 }

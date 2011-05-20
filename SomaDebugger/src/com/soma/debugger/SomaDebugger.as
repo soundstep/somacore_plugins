@@ -53,8 +53,9 @@
 		// private, protected properties
 		//------------------------------------
 		
-		private var _instance:ISoma;
-		private var _wire:SomaDebuggerWire;		private var _wireGC:SomaDebuggerGCWire;
+		private var _vo:SomaDebuggerVO;
+		private var _instance:ISoma;		private var _wire:SomaDebuggerWire;
+		private var _wireGC:SomaDebuggerGCWire;
 		private var _view:SomaDebuggerView;
 		private var _name:String;
 
@@ -62,7 +63,7 @@
 		// public properties
 		//------------------------------------
 		
-		public static const NAME_DEFAULT:String = "Soma::SomaDebugger";
+		public static const NAME_DEFAULT:String = "debugger";
 		
 		public static var DEFAULT_WINDOW_WIDTH:Number = 450;
 		public static var DEFAULT_WINDOW_HEIGHT:Number = 180;
@@ -100,14 +101,37 @@
 				var vo:SomaDebuggerVO = pluginVO as SomaDebuggerVO;
 				if (vo == null || vo.instance == null || vo.instance.wires == null) throw new Error("Soma is not initialized properly.");
 				_name = (vo.debuggerName == null || vo.debuggerName == "") ? NAME_DEFAULT : vo.debuggerName;
+				_vo = vo;
 				_instance = vo.instance;
-				_wire = _instance.wires.addWire(_name, new SomaDebuggerWire(_name, vo)) as SomaDebuggerWire;				_wireGC = _instance.wires.getWire(_name+"GCWire") as SomaDebuggerGCWire;
-				_view = _wire.debugger;
+				createWires();
+				createView();
+				createInjectorMapping();
 			} catch (e:Error) {
 				trace("Error in " + this + " " + e);
 			}
 		}
+
+		private function createInjectorMapping():void {
+			if (_instance.injector) {
+				_instance.injector.mapToInstance(SomaDebugger, this, _name);
+			}
+		}
+
+		private function removeInjectorMapping():void {
+			if (_instance.injector) {
+				_instance.injector.removeMapping(SomaDebugger, _name);
+			}
+		}
+
+		private function createWires():void {
+			_wire = _instance.wires.addWire(_name, new SomaDebuggerWire(_name, _vo)) as SomaDebuggerWire;
+			_wireGC = _instance.wires.getWire(_name+"GCWire") as SomaDebuggerGCWire;
+		}
 		
+		private function createView():void {
+			_view = _wire.debugger;
+		}
+
 		public function printCommand(type:String = "message", event:Event = null):void {
 			if (_view != null) _view.printCommand(type, event);
 		}
@@ -159,8 +183,11 @@
 		public function dispose():void {
 			// dispose objects, graphics and events listeners
 			try {
+				removeInjectorMapping();
+				_vo.dispose();
 				_instance.removeWire(_name);
 				_instance.removeWire(_name+"GCWire");
+				_vo = null;
 				_instance = null;
 				_wire = null;
 				_wireGC = null;

@@ -1,20 +1,20 @@
 package {
-	import com.soma.debugger.tests.support.TestEvent;
 	import com.bit101.components.PushButton;
 	import com.soma.core.Soma;
 	import com.soma.core.interfaces.ISoma;
 	import com.soma.core.interfaces.ISomaPlugin;
 	import com.soma.debugger.SomaDebugger;
 	import com.soma.debugger.events.SomaDebuggerEvent;
-	import com.soma.debugger.tests.support.TestCommand;
 	import com.soma.debugger.vo.SomaDebuggerVO;
-
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
+	import support.TestCommand;
+	import support.TestEvent;
+
 		/**	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />	 * <b>Class version:</b> 1.0<br />	 * <b>Actionscript version:</b> 3.0<br />	 * <b>Date:</b> Oct 17, 2010<br />	 * @example	 * <listing version="3.0"></listing>	 */		public class Main extends Sprite {
 		private var _debugger:ISomaPlugin;
 		private var _soma:ISoma;
