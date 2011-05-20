@@ -12,6 +12,7 @@ package com.soma.plugins.assets.vo {
 		private var _config:String;
 
 		public function SomaAssetsVO(instance:ISoma, config:String = null) {
+			if (instance == null) throw new Error("Error in " + this + " ISoma instance is null.");
 			_instance = instance;
 			_config = config;
 		}

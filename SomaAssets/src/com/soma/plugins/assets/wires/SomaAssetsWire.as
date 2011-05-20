@@ -188,7 +188,12 @@ package com.soma.plugins.assets.wires {
 		}
 
 		public function getLoader(path:String):ILoader {
-			return getLoaderFromPath(_loader, path.split(SomaAssets.LOADER_PATH_DELIMITER));
+			if (path == SomaAssets.LOADER_PRIMARY_GROUP_NAME) return _loader;
+			var pathSplit:Array = path.split(SomaAssets.LOADER_PATH_DELIMITER);
+			if (pathSplit.length > 0 && pathSplit[0] == SomaAssets.LOADER_PRIMARY_GROUP_NAME) {
+				pathSplit.shift();
+			}
+			return getLoaderFromPath(_loader, pathSplit);
 		}
 
 		override public function dispose():void {
@@ -208,10 +213,10 @@ package com.soma.plugins.assets.wires {
 			return _loader.config;
 		}
 
-		public function addConfig(data:String):void {
-			if (_loader.addConfig(data)) {
-				configLoadedHandler();
-			}
+		public function addConfig(data:String):Boolean {
+			var loaded:Boolean = _loader.addConfig(data);
+			if (loaded) configLoadedHandler();
+			return loaded;
 		}
 
 		public function get plugin():SomaAssets {

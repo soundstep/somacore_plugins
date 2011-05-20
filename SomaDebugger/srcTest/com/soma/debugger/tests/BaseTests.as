@@ -21,7 +21,7 @@ package com.soma.debugger.tests {
 			_soma.createPluginFromClassName(null, null);
 		}
 		
-		[Test(expects="Error")]
+		[Test]
 		public function testCreatePluginBadVO():void {
 			_soma.createPlugin(SomaDebugger, new SomaDebuggerVO(null));
 		}
