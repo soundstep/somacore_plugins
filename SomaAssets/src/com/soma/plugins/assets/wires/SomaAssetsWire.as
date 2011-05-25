@@ -191,6 +191,7 @@ package com.soma.plugins.assets.wires {
 			if (path == SomaAssets.LOADER_PRIMARY_GROUP_NAME) return _loader;
 			var pathSplit:Array = path.split(SomaAssets.LOADER_PATH_DELIMITER);
 			if (pathSplit.length > 0 && pathSplit[0] == SomaAssets.LOADER_PRIMARY_GROUP_NAME) {
+				// remove unnecessary primary group name in path
 				pathSplit.shift();
 			}
 			return getLoaderFromPath(_loader, pathSplit);

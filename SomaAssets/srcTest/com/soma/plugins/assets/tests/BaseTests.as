@@ -1,13 +1,25 @@
 package com.soma.plugins.assets.tests {
 
-	import org.flexunit.asserts.assertEquals;
 	import com.soma.assets.loader.core.IAssetLoader;
+	import com.soma.core.Soma;
+	import com.soma.core.interfaces.ISoma;
+	import com.soma.plugins.assets.SomaAssets;
+	import com.soma.plugins.assets.events.SomaAssetsEvent;
+	import com.soma.plugins.assets.vo.SomaAssetsVO;
+	import com.soma.plugins.assets.wires.SomaAssetsWire;
+
+	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
+	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
 	import org.flexunit.asserts.fail;
 	import org.flexunit.async.Async;
-	import com.soma.plugins.assets.events.SomaAssetsEvent;
-	import org.hamcrest.object.instanceOf;	import org.hamcrest.assertThat;	import com.soma.plugins.assets.wires.SomaAssetsWire;	import org.flexunit.asserts.assertNotNull;	import com.soma.plugins.assets.vo.SomaAssetsVO;	import com.soma.plugins.assets.SomaAssets;	import com.soma.core.Soma;	import com.soma.core.interfaces.ISoma;	import mx.core.FlexGlobals;	import flash.display.Stage;
+	import org.hamcrest.assertThat;
+	import org.hamcrest.object.instanceOf;
+
+	import mx.core.FlexGlobals;
+
+	import flash.display.Stage;
 	/**	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />	 * <b>Class version:</b> 1.0<br />	 * <b>Actionscript version:</b> 3.0<br />	 * <b>Date:</b> Oct 6, 2010<br />	 * @example	 * <listing version="3.0"></listing>	 */
 	public class BaseTests {
 
@@ -180,7 +192,81 @@ package com.soma.plugins.assets.tests {
 		}
 		
 		[Test]
+		public function testGetLoaderGroupDeeperWithCustomDelimiter():void {
+			SomaAssets.LOADER_PATH_DELIMITER = "_";
+			var soma:ISoma = new Soma(_stage);
+			_plugin = soma.createPlugin(SomaAssets, new SomaAssetsVO(soma)) as SomaAssets;
+			_plugin.addConfig(_configXML);
+			var groupName:String = "group0_group00";
+			assertNotNull(_plugin.getLoader(groupName));
+			assertThat(_plugin.getLoader(groupName), instanceOf(IAssetLoader));
+			assertEquals(_plugin.getLoader(groupName).id, "group00");
+			soma.dispose();
+			soma = null;
+			SomaAssets.LOADER_PATH_DELIMITER = "/";
+		}
+		
+		[Test]
+		public function testGetLoaderGroupWithPrimaryGroupWithCustomDelimiter():void {
+			SomaAssets.LOADER_PATH_DELIMITER = "_";
+			var soma:ISoma = new Soma(_stage);
+			_plugin = soma.createPlugin(SomaAssets, new SomaAssetsVO(soma)) as SomaAssets;
+			_plugin.addConfig(_configXML);
+			var groupName:String = "main_group0";
+			assertNotNull(_plugin.getLoader(groupName));
+			assertThat(_plugin.getLoader(groupName), instanceOf(IAssetLoader));
+			assertEquals(_plugin.getLoader(groupName).id, "group0");
+			soma.dispose();
+			soma = null;
+			SomaAssets.LOADER_PATH_DELIMITER = "/";
+		}
+		
+		[Test]
+		public function testGetLoaderGroupDeeperWithPrimaryGroupWithCustomDelimiter():void {
+			SomaAssets.LOADER_PATH_DELIMITER = "_";
+			var soma:ISoma = new Soma(_stage);
+			_plugin = soma.createPlugin(SomaAssets, new SomaAssetsVO(soma)) as SomaAssets;
+			_plugin.addConfig(_configXML);
+			var groupName:String = "main_group0_group00";
+			assertNotNull(_plugin.getLoader(groupName));
+			assertThat(_plugin.getLoader(groupName), instanceOf(IAssetLoader));
+			assertEquals(_plugin.getLoader(groupName).id, "group00");
+			soma.dispose();
+			soma = null;
+			SomaAssets.LOADER_PATH_DELIMITER = "/";
+		}
+		
+		[Test]
+		public function testGetLoaderGroupDeeperWithConstant():void {
+			_plugin.addConfig(_configXML);
+			var groupName:String = "group0" + SomaAssets.LOADER_PATH_DELIMITER + "group00";
+			assertNotNull(_plugin.getLoader(groupName));
+			assertThat(_plugin.getLoader(groupName), instanceOf(IAssetLoader));
+			assertEquals(_plugin.getLoader(groupName).id, "group00");
+		}
+		
+		[Test(expects="Error")]
+		public function testGetLoaderGroupDeeperError():void {
+			_plugin.addConfig(_configXML);
+			var groupName:String = "group0-group00";
+			assertNotNull(_plugin.getLoader(groupName));
+			assertThat(_plugin.getLoader(groupName), instanceOf(IAssetLoader));
+			assertEquals(_plugin.getLoader(groupName).id, "group00");
+		}
+		
+		[Test]
 		public function testGetLoaderAsset():void {
+			
+		}
+		
+		[Test]
+		public function testGetAssetErrorOnPath():void {
+//			_plugin.addConfig(_configXML);
+//			assertNull(_plugin.getAsset("group0"));
+		}
+		
+		[Test]
+		public function testGetAsset():void {
 			
 		}
 		

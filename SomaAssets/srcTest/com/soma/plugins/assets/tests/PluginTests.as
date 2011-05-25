@@ -8,10 +8,7 @@ package com.soma.plugins.assets.tests {
 	import mx.core.FlexGlobals;
 	import org.hamcrest.assertThat;
 	import org.hamcrest.object.instanceOf;
-
-
-
-		/**	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />	 * <b>Class version:</b> 1.0<br />	 * <b>Actionscript version:</b> 3.0<br />	 * <b>Date:</b> Oct 6, 2010<br />	 * @example	 * <listing version="3.0"></listing>	 */		public class PluginTests {				private var _soma:ISoma;
+		/**	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />	 * <b>Class version:</b> 1.0<br />	 * <b>Actionscript version:</b> 3.0<br />	 * <b>Date:</b> Oct 6, 2010<br />	 * @example	 * <listing version="3.0"></listing>	 */		public class PluginTests {				private var _soma:ISoma;
 				private static var _stage:Stage;				[BeforeClass]		public static function runBeforeClass():void {			_stage = FlexGlobals.topLevelApplication.stage;
 		}				[AfterClass]		public static function runAfterClass():void {			_stage = null;		} 				[Before]		public function runBefore():void {			_soma = new Soma(_stage);		}				[After]		public function runAfter():void {			_soma.dispose();			_soma = null;		}				[Test(expects="Error")]
 		public function testCreatePluginNull():void {
