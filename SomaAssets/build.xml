@@ -44,6 +44,10 @@
 			<arg value="0xFCFCFC"/>
 			<arg value="-library-path"/>
 			<arg value="${FLEX_HOME}/frameworks/locale/en_US"/>
+			<!--
+			<arg value="-source-path"/>
+			<arg value="/Users/romualdq/Documents/devserver/workspace/AssetLoader/src"/>
+			-->
 			<arg value="-library-path"/>
 			<arg value="${FLEX_HOME}/frameworks/libs"/>
 			<arg value="-target-player"/>

@@ -1,5 +1,6 @@
 package com.soma.plugins.assets.wires {
 
+	import com.soma.assets.loader.events.AssetLoaderErrorEvent;
 	import com.soma.assets.loader.AssetLoader;
 	import com.soma.assets.loader.core.IAssetLoader;
 	import com.soma.assets.loader.core.ILoader;
@@ -35,39 +36,60 @@ package com.soma.plugins.assets.wires {
 			_loader = new AssetLoader(SomaAssets.LOADER_PRIMARY_GROUP_NAME);
 			setListeners(_loader);
 			createInjectorMapping();
-			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.LOADER_READY, _plugin));
+			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.LOADER_READY, _plugin, _loader));
 		}
 
 		private function createInjectorMapping():void {
-			if (injector) {
+			if (injector && !injector.hasMapping(IAssetLoader, SomaAssets.INJECTION_NAME)) {
 				injector.mapToInstance(IAssetLoader, _loader, SomaAssets.INJECTION_NAME);
 			}
 		}
 
 		private function disposeInjectorMapping():void {
-			if (injector) {
+			if (injector && injector.hasMapping(IAssetLoader, SomaAssets.INJECTION_NAME)) {
 				injector.removeMapping(IAssetLoader, SomaAssets.INJECTION_NAME);
 			}
 		}
 
+		private function createInjectorMappingConfig():void {
+			if (injector && !injector.hasMapping(XML, SomaAssets.INJECTION_NAME)) {
+				injector.mapToInstance(XML, _loader.config, SomaAssets.INJECTION_NAME);
+			}
+		}
+
+		private function disposeInjectorMappingConfig():void {
+			if (injector && injector.hasMapping(XML, SomaAssets.INJECTION_NAME)) {
+				injector.removeMapping(XML, SomaAssets.INJECTION_NAME);
+			}
+		}
+
 		private function setListeners(target:IAssetLoader):void {
+			if (!target) return;
 			target.addEventListener(AssetLoaderEvent.CONFIG_LOADED, configLoadedHandler);
 			target.addEventListener(AssetLoaderEvent.COMPLETE, completeHandler);
-			
+			target.addEventListener(AssetLoaderErrorEvent.ERROR, errorHandler);
 		}
 
 		private function removeListeners(target:IAssetLoader):void {
+			if (!target) return;
 			target.removeEventListener(AssetLoaderEvent.CONFIG_LOADED, configLoadedHandler);
 			target.removeEventListener(AssetLoaderEvent.COMPLETE, completeHandler);
+			target.removeEventListener(AssetLoaderErrorEvent.ERROR, errorHandler);
+		}
+
+		private function errorHandler(event:AssetLoaderErrorEvent):void {
+			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.ERROR, plugin, loader));
 		}
 
 		private function configLoadedHandler(event:AssetLoaderEvent = null):void {
+			disposeInjectorMappingConfig();
+			createInjectorMappingConfig();
 			parseAssets(_loader);
-			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.CONFIG_LOADED, _plugin, null, null, _loader.config));
+			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.CONFIG_LOADED, _plugin, _loader, null, null, _loader.config));
 		}
 
 		private function completeHandler(event:AssetLoaderEvent):void {
-			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.LOADER_COMPLETE, _plugin, null, null, _loader.config));
+			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.LOADER_COMPLETE, _plugin, _loader, null, null, _loader.config));
 		}
 
 		private function getClass(instance:Object):Class {
@@ -76,6 +98,10 @@ package com.soma.plugins.assets.wires {
 
 		private function parseAssets(target:ILoader):void {
 			var path:String = getAssetPath(target, target.id);
+			// add ILoader mapping
+			if (injector && !injector.hasMapping(ILoader, path)) {
+				injector.mapToInstance(ILoader, target, path);
+			}
 			if (target is IAssetLoader) {
 				var ids:Array = IAssetLoader(target).ids;
 				var i:Number = 0;
@@ -92,11 +118,6 @@ package com.soma.plugins.assets.wires {
 			}
 			else {
 				if (injector) {
-					// add ILoader mapping
-					if (!injector.hasMapping(ILoader, path)) {
-						injector.mapToInstance(ILoader, target, path);
-						injector.mapToInstance(getClass(target), target, path);
-					}
 					// add specific ILoader mapping (ImageLoader, SWFLoader, etc)
 					var classAsset:Class = getClass(target);
 					if (!injector.hasMapping(classAsset, path)) {
@@ -110,6 +131,10 @@ package com.soma.plugins.assets.wires {
 		private function removeLoaderInjectorMapping(target:ILoader):void {
 			if (!injector) return;
 			var path:String = getAssetPath(target, target.id);
+			// remove ILoader mapping
+			if (injector && injector.hasMapping(ILoader, path)) {
+				injector.removeMapping(ILoader, path);
+			}
 			if (target is IAssetLoader) {
 				// contains loaders
 				var ids:Array = IAssetLoader(target).ids;
@@ -128,10 +153,6 @@ package com.soma.plugins.assets.wires {
 				var classLoader:Class = getClass(target);
 				if (injector.hasMapping(classLoader, path)) {
 					injector.removeMapping(classLoader, path);
-				}
-				// remove ILoader mapping
-				if (injector.hasMapping(ILoader, path)) {
-					injector.removeMapping(ILoader, path);
 				}
 				// remove asset mapping (Bitmap, MovieCLip, etc)
 				if (target.data) {
@@ -163,7 +184,7 @@ package com.soma.plugins.assets.wires {
 			return currentTarget;
 		}
 
-		private function getAssetFromLoader(target:ILoader, path:Array):Object {
+		private function getAssetsFromLoader(target:ILoader, path:Array):Object {
 			if (!target) return null;
 			var loader:ILoader = getLoaderFromPath(target, path);
 			if (!loader) return null;
@@ -180,11 +201,11 @@ package com.soma.plugins.assets.wires {
 					injector.mapToInstance(getClass(loader.data), loader.data, path);
 				}
 			}
-			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.ASSET_LOADED, _plugin, loader.data, path, _loader.config));
+			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.ASSET_LOADED, _plugin, _loader, loader.data, path, _loader.config));
 		}
 
-		public function getAsset(path:String):* {
-			return getAssetFromLoader(_loader, path.split(SomaAssets.LOADER_PATH_DELIMITER));
+		public function getAssets(path:String):* {
+			return getAssetsFromLoader(_loader, path.split(SomaAssets.LOADER_PATH_DELIMITER));
 		}
 
 		public function getLoader(path:String):ILoader {
@@ -200,8 +221,9 @@ package com.soma.plugins.assets.wires {
 		override public function dispose():void {
 			removeLoaderInjectorMapping(_loader);
 			removeListeners(_loader);
+			disposeInjectorMappingConfig();
 			disposeInjectorMapping();
-			_loader.destroy();
+			if (_loader) _loader.destroy();
 			_loader = null;
 			_plugin = null;
 		}
@@ -211,6 +233,7 @@ package com.soma.plugins.assets.wires {
 		}
 
 		public function get config():XML {
+			if (!_loader) return null;
 			return _loader.config;
 		}
 
@@ -225,6 +248,7 @@ package com.soma.plugins.assets.wires {
 		}
 
 		public function get configLoaded():Boolean {
+			if (!_loader) return false;
 			return _loader.config != null;
 		}
 

@@ -42,24 +42,25 @@ package com.soma.plugins.assets {
 		}
 
 		private function createInjectorMapping():void {
-			if (_vo.instance.injector) {
+			if (_vo.instance && _vo.instance.injector && !_vo.instance.injector.hasMapping(SomaAssets, INJECTION_NAME)) {
 				_vo.instance.injector.mapToInstance(SomaAssets, this, INJECTION_NAME);
-			}
-		}
-
-		private function disposeWire():void {
-			if (_vo.instance.hasWire(SomaAssetsWire.NAME)) {
-				_vo.instance.removeWire(SomaAssetsWire.NAME);
 			}
 		}
 		
 		private function disposeInjectorMapping():void {
-			if (_vo.instance.injector) {
+			if (_vo.instance && _vo.instance.injector && _vo.instance.injector.hasMapping(SomaAssets, INJECTION_NAME)) {
 				_vo.instance.injector.removeMapping(SomaAssets, INJECTION_NAME);
 			}
 		}
 
+		private function disposeWire():void {
+			if (_vo.instance && _vo.instance.hasWire(SomaAssetsWire.NAME)) {
+				_vo.instance.removeWire(SomaAssetsWire.NAME);
+			}
+		}
+
 		public function dispose():void {
+			if (!_vo) return;
 			disposeWire();
 			disposeInjectorMapping();
 			_vo.dispose();
@@ -67,31 +68,42 @@ package com.soma.plugins.assets {
 		}
 
 		public function addConfig(data:String):Boolean {
+			if (!wire) return false;
 			return wire.addConfig(data);
 		}
 
 		public function get wire():SomaAssetsWire {
+			if (!_vo || ! _vo.instance) return null;
 			return _vo.instance.getWire(SomaAssetsWire.NAME) as SomaAssetsWire;
 		}
 		
 		public function get loader():AssetLoader {
+			if (!wire) return null;
 			return wire.loader;
 		}
 
 		public function get config():XML {
+			if (!wire) return null;
 			return wire.config;
 		}
 
 		public function get configLoaded():Boolean {
+			if (!wire) return false;
 			return wire.configLoaded;
 		}
 
-		public function getAsset(path:String):* {
-			return wire.getAsset(path);
+		public function getAssets(path:String):* {
+			if (!wire) return null;
+			return wire.getAssets(path);
 		}
 
 		public function getLoader(path:String):ILoader {
+			if (!wire) return null;
 			return wire.getLoader(path);
+		}
+
+		public function get vo():SomaAssetsVO {
+			return _vo;
 		}
 
 	}
