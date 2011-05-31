@@ -1,20 +1,5 @@
 package com.soma.plugins.assets.tests {
 
-	import com.soma.assets.loader.loaders.BinaryLoader;
-	import com.soma.assets.loader.loaders.VideoLoader;
-	import com.soma.assets.loader.loaders.XMLLoader;
-	import com.soma.assets.loader.loaders.TextLoader;
-	import com.soma.assets.loader.loaders.SoundLoader;
-	import com.soma.assets.loader.loaders.JSONLoader;
-	import com.soma.assets.loader.loaders.SWFLoader;
-	import flash.utils.ByteArray;
-	import flash.net.NetStream;
-	import flash.media.Sound;
-	import flash.display.MovieClip;
-	import com.soma.assets.loader.core.IAssetLoader;
-	import com.soma.assets.loader.loaders.BaseLoader;
-	import com.soma.assets.loader.loaders.CSSLoader;
-	import com.soma.assets.loader.loaders.ImageLoader;
 	import com.soma.core.Soma;
 	import com.soma.core.interfaces.ISoma;
 	import com.soma.plugins.assets.SomaAssets;
@@ -22,6 +7,17 @@ package com.soma.plugins.assets.tests {
 	import com.soma.plugins.assets.vo.SomaAssetsVO;
 	import com.soma.plugins.assets.wires.SomaAssetsWire;
 
+	import org.assetloader.core.IAssetLoader;
+	import org.assetloader.loaders.BaseLoader;
+	import org.assetloader.loaders.BinaryLoader;
+	import org.assetloader.loaders.CSSLoader;
+	import org.assetloader.loaders.ImageLoader;
+	import org.assetloader.loaders.JSONLoader;
+	import org.assetloader.loaders.SWFLoader;
+	import org.assetloader.loaders.SoundLoader;
+	import org.assetloader.loaders.TextLoader;
+	import org.assetloader.loaders.VideoLoader;
+	import org.assetloader.loaders.XMLLoader;
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertFalse;
 	import org.flexunit.asserts.assertNotNull;
@@ -35,8 +31,12 @@ package com.soma.plugins.assets.tests {
 	import mx.core.FlexGlobals;
 
 	import flash.display.Bitmap;
+	import flash.display.MovieClip;
 	import flash.display.Stage;
+	import flash.media.Sound;
+	import flash.net.NetStream;
 	import flash.text.StyleSheet;
+	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	/**	 * <b>Author:</b> Romuald Quantin - <a href="http://www.soundstep.com/" target="_blank">www.soundstep.com</a><br />	 * <b>Class version:</b> 1.0<br />	 * <b>Actionscript version:</b> 3.0<br />	 * <b>Date:</b> Oct 6, 2010<br />	 * @example	 * <listing version="3.0"></listing>	 */
 	public class BaseTests {

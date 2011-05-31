@@ -1,11 +1,12 @@
 package com.soma.plugins.assets {
 
-	import com.soma.assets.loader.AssetLoader;
-	import com.soma.assets.loader.core.ILoader;
 	import com.soma.core.interfaces.ISomaPlugin;
 	import com.soma.core.interfaces.ISomaPluginVO;
 	import com.soma.plugins.assets.vo.SomaAssetsVO;
 	import com.soma.plugins.assets.wires.SomaAssetsWire;
+
+	import org.assetloader.AssetLoader;
+	import org.assetloader.core.ILoader;
 
 	/**
 	 * @author Romuald Quantin (romu@soundstep.com)

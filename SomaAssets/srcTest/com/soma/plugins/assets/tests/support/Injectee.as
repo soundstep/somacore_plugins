@@ -1,23 +1,25 @@
 package com.soma.plugins.assets.tests.support {
 
-	import com.soma.assets.loader.loaders.BinaryLoader;
-	import com.soma.assets.loader.loaders.VideoLoader;
-	import com.soma.assets.loader.loaders.XMLLoader;
-	import com.soma.assets.loader.loaders.TextLoader;
-	import com.soma.assets.loader.loaders.SoundLoader;
-	import com.soma.assets.loader.loaders.JSONLoader;
-	import com.soma.assets.loader.loaders.CSSLoader;
-	import com.soma.assets.loader.loaders.SWFLoader;
-	import com.soma.assets.loader.loaders.ImageLoader;
-	import flash.utils.ByteArray;
-	import flash.net.NetStream;
-	import flash.media.Sound;
-	import flash.display.MovieClip;
-	import flash.display.Bitmap;
-	import flash.text.StyleSheet;
-	import com.soma.assets.loader.core.ILoader;
-	import com.soma.assets.loader.core.IAssetLoader;
 	import com.soma.plugins.assets.SomaAssets;
+
+	import org.assetloader.core.IAssetLoader;
+	import org.assetloader.core.ILoader;
+	import org.assetloader.loaders.BinaryLoader;
+	import org.assetloader.loaders.CSSLoader;
+	import org.assetloader.loaders.ImageLoader;
+	import org.assetloader.loaders.JSONLoader;
+	import org.assetloader.loaders.SWFLoader;
+	import org.assetloader.loaders.SoundLoader;
+	import org.assetloader.loaders.TextLoader;
+	import org.assetloader.loaders.VideoLoader;
+	import org.assetloader.loaders.XMLLoader;
+
+	import flash.display.Bitmap;
+	import flash.display.MovieClip;
+	import flash.media.Sound;
+	import flash.net.NetStream;
+	import flash.text.StyleSheet;
+	import flash.utils.ByteArray;
 	/**
 	 * @author Romuald Quantin (romu@soundstep.com)
 	 */

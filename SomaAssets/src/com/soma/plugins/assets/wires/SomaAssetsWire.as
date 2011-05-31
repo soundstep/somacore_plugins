@@ -1,14 +1,16 @@
 package com.soma.plugins.assets.wires {
 
-	import com.soma.assets.loader.events.AssetLoaderErrorEvent;
-	import com.soma.assets.loader.AssetLoader;
-	import com.soma.assets.loader.core.IAssetLoader;
-	import com.soma.assets.loader.core.ILoader;
-	import com.soma.assets.loader.events.AssetLoaderEvent;
 	import com.soma.core.interfaces.IWire;
 	import com.soma.core.wire.Wire;
 	import com.soma.plugins.assets.SomaAssets;
 	import com.soma.plugins.assets.events.SomaAssetsEvent;
+
+	import org.assetloader.AssetLoader;
+	import org.assetloader.core.IAssetLoader;
+	import org.assetloader.core.ILoader;
+	import org.assetloader.events.AssetLoaderErrorEvent;
+	import org.assetloader.events.AssetLoaderEvent;
+
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 

@@ -1,7 +1,9 @@
 package com.soma.plugins.assets.events {
 
-	import com.soma.assets.loader.core.IAssetLoader;
 	import com.soma.plugins.assets.SomaAssets;
+
+	import org.assetloader.core.IAssetLoader;
+
 	import flash.events.Event;
 
 
