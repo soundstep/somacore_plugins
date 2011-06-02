@@ -1,13 +1,11 @@
-h2. SomaCore plugins
+h2. SomaAssets
 
-h3. SomaAssets
-
-"Manual":https://github.com/soundstep/somacore_plugins/wiki/SomaAssets
+"Read the SomaAssets wiki to get started.":https://github.com/soundstep/somacore_plugins/wiki/SomaAssets
 
 The SomaAssets plugin is a wrapper to the "AssetLoader":https://github.com/soundstep/AssetLoader library and makes you able to easily load multiple assets (such as images, video, sounds, XML, SWF files, and so on) as well as having an easy access to the assets with or without injection enabled.
 
 Note: The "AssetLoader":https://github.com/soundstep/AssetLoader library is a port based on Flash built-in events from the original "Matan's AssetLoader":https://github.com/Matan/AssetLoader that is written with signals.
 
-h3. SomaDebugger
+h2. SomaDebugger
 
 Coming soon...
