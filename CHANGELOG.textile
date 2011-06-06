@@ -1,3 +1,7 @@
+h3. SomaAssets-v1.0.1 (06-06-2011)
+
+SomaAssetsEvent.ERROR now gives the correct error type and error message.
+
 h3. SomaDebugger-v2.0.1 (20-05-2011)
 
 Injection name added.

@@ -80,7 +80,7 @@ package com.soma.plugins.assets.wires {
 		}
 
 		private function errorHandler(event:AssetLoaderErrorEvent):void {
-			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.ERROR, plugin, loader));
+			dispatchEvent(new SomaAssetsEvent(SomaAssetsEvent.ERROR, plugin, loader, null, null, _loader.config, event.errorType, event.message));
 		}
 
 		private function configLoadedHandler(event:AssetLoaderEvent = null):void {
