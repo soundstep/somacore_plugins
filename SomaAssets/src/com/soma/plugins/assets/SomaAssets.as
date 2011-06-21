@@ -9,7 +9,7 @@ package com.soma.plugins.assets {
 	import org.assetloader.core.ILoader;
 
 	/**
-	 * @author Romuald Quantin (romu@soundstep.com)
+	 * @author Romuald Quantin
 	 */
 	public class SomaAssets implements ISomaPlugin {
 		

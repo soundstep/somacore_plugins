@@ -21,7 +21,7 @@ package com.soma.plugins.assets.tests.support {
 	import flash.text.StyleSheet;
 	import flash.utils.ByteArray;
 	/**
-	 * @author Romuald Quantin (romu@soundstep.com)
+	 * @author Romuald Quantin
 	 */
 	public class Injectee {
 		

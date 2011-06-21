@@ -8,7 +8,7 @@ package com.soma.plugins.assets.events {
 
 
 	/**
-	 * @author Romuald Quantin (romu@soundstep.com)
+	 * @author Romuald Quantin
 	 */
 	public class SomaAssetsEvent extends Event {
 

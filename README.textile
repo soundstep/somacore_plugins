@@ -6,6 +6,11 @@ The SomaAssets plugin is a wrapper to the "AssetLoader":https://github.com/sound
 
 Note: The "AssetLoader":https://github.com/soundstep/AssetLoader library is a port based on Flash built-in events from the original "Matan's AssetLoader":https://github.com/Matan/AssetLoader that is written with signals.
 
+h4. Demo
+
+* "Load your assets with the SomaAssets plugin":http://www.soundstep.com/blog/source/somacore/demos/SomaAssetsDemo/
+* "View Source":http://www.soundstep.com/blog/source/somacore/demos/SomaAssetsDemo/srcview
+
 h2. SomaDebugger
 
 Coming soon...

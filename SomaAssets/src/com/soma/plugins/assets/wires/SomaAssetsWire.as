@@ -16,7 +16,7 @@ package com.soma.plugins.assets.wires {
 
 
 	/**
-	 * @author Romuald Quantin (romu@soundstep.com)
+	 * @author Romuald Quantin
 	 */
 	public class SomaAssetsWire extends Wire implements IWire {
 

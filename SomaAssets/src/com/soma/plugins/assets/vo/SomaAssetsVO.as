@@ -4,7 +4,7 @@ package com.soma.plugins.assets.vo {
 	import com.soma.core.interfaces.ISomaPluginVO;
 
 	/**
-	 * @author Romuald Quantin (romu@soundstep.com)
+	 * @author Romuald Quantin
 	 */
 	public class SomaAssetsVO implements ISomaPluginVO {
 
