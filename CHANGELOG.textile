@@ -1,3 +1,7 @@
+h3. SomaAssets-v1.0.3 (01-08-2011)
+
+AssetLoader updated (2.4.0)
+
 h3. SomaAssets-v1.0.1 (06-06-2011)
 
 SomaAssetsEvent.ERROR now gives the correct error type and error message.

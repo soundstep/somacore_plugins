@@ -57,6 +57,7 @@
 			<arg value="${dir.src.test}/FlexUnitRunner.mxml"/>
 		</exec>
 		<fdt.extSWFViewer.startSWF file="${dir.bin}/FlexUnitRunner.swf" width="1000" height="600"/>
+		<!--<fdt.launch.application projectname="SomaAssets" mainclass="${dir.src.test}/FlexUnitRunner.mxml" debug="false" target="${dir.bin}/FlexUnitRunner.swf" startswf="true" swflauncher="Adobe Flash Player"/>-->
 		<echo message="Success"/>
 		<eclipse.refreshLocal resource="${project.name}" />
 	</target>
