@@ -1,3 +1,7 @@
+h3. SomaAssets-v1.0.4 (08-08-2011)
+
+AssetLoader updated (2.4.2)
+
 h3. SomaAssets-v1.0.3 (01-08-2011)
 
 AssetLoader updated (2.4.0)
